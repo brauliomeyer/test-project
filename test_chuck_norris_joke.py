@@ -145,7 +145,7 @@ class TestFetchRandomJoke(unittest.TestCase):
 class TestListCategories(unittest.TestCase):
     """Test the list_categories function."""
 
-    @patch("chuck_norris_joke.fetch_json")
+    @patch("config.fetch_json")
     def test_list_categories_success(self, mock_fetch):
         """list_categories() should return sorted categories."""
         mock_fetch.return_value = MOCK_CATEGORIES
@@ -153,7 +153,7 @@ class TestListCategories(unittest.TestCase):
         mock_fetch.assert_called_once_with("https://api.chucknorris.io/jokes/categories")
         self.assertEqual(result, sorted(MOCK_CATEGORIES))
 
-    @patch("chuck_norris_joke.fetch_json")
+    @patch("config.fetch_json")
     def test_list_categories_unexpected_response(self, mock_fetch):
         """list_categories() should exit if response is not a list."""
         mock_fetch.return_value = {"not": "a list"}
